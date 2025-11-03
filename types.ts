@@ -1,4 +1,3 @@
-
 export enum Difficulty {
   Low = 'Низкая',
   Medium = 'Средняя',
@@ -41,6 +40,13 @@ export interface PlaybookStep {
   completed: boolean;
 }
 
+export interface IncidentSolution {
+  attackerIp?: string;
+  attackerDomain?: string;
+  victim?: string;
+  recommendations: string[];
+}
+
 export interface Incident {
   id: string;
   title: string;
@@ -54,6 +60,7 @@ export interface Incident {
   playbook: PlaybookStep[];
   mitreTactics: string[];
   emailBody?: string;
+  solution: IncidentSolution;
 }
 
 export type View = 'dashboard' | 'investigation';

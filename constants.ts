@@ -1,5 +1,13 @@
-
 import { Incident, Difficulty, IncidentStatus, LogLevel } from './types';
+
+export const RECOMMENDATIONS_OPTIONS = [
+    'Изолировать систему',
+    'Заблокировать IP',
+    'Заблокировать домен',
+    'Сбросить учетные данные',
+    'Переустановить ОС',
+    'Проверить смежные системы',
+];
 
 export const INCIDENTS_DATA: Incident[] = [
   {
@@ -30,6 +38,12 @@ export const INCIDENTS_DATA: Incident[] = [
     ],
     mitreTactics: ['T1566', 'T1204', 'T1059'],
     emailBody: `От: marketing@secure-bank.com\nТема: Срочно: Оповещение безопасности вашего аккаунта\n\nУважаемый клиент,\n\nМы обнаружили необычную активность в вашем аккаунте. В целях безопасности, пожалуйста, немедленно подтвердите свои учетные данные, перейдя по ссылке: http://malicious-domain.com/login\n\nС уважением,\nКоманда Secure Bank`,
+    solution: {
+      attackerIp: '123.45.67.89',
+      attackerDomain: 'malicious-domain.com',
+      victim: 'john-doe-pc',
+      recommendations: ['Заблокировать домен', 'Заблокировать IP', 'Изолировать систему'],
+    },
   },
   {
     id: 'INC-002',
@@ -56,6 +70,11 @@ export const INCIDENTS_DATA: Incident[] = [
         { id: 5, text: 'Пересмотреть политики паролей', completed: false },
     ],
     mitreTactics: ['T1110'],
+    solution: {
+        attackerIp: '198.51.100.10',
+        victim: 'root',
+        recommendations: ['Заблокировать IP', 'Сбросить учетные данные'],
+    },
   },
   {
     id: 'INC-003',
@@ -82,6 +101,11 @@ export const INCIDENTS_DATA: Incident[] = [
         { id: 5, text: 'Провести анализ оперативной памяти', completed: false },
     ],
     mitreTactics: ['T1059.001', 'T1547', 'T1071'],
+    solution: {
+        attackerIp: '203.0.113.55',
+        victim: 'workstation-12',
+        recommendations: ['Изолировать систему', 'Заблокировать IP'],
+    },
   },
   {
     id: 'INC-004',
@@ -93,6 +117,7 @@ export const INCIDENTS_DATA: Incident[] = [
     iocs: [],
     playbook: [],
     mitreTactics: [],
+    solution: { recommendations: [] },
   },
   {
     id: 'INC-005',
@@ -104,6 +129,7 @@ export const INCIDENTS_DATA: Incident[] = [
     iocs: [],
     playbook: [],
     mitreTactics: [],
+    solution: { recommendations: [] },
   },
   {
     id: 'INC-006',
@@ -115,6 +141,7 @@ export const INCIDENTS_DATA: Incident[] = [
     iocs: [],
     playbook: [],
     mitreTactics: [],
+    solution: { recommendations: [] },
   },
   {
     id: 'INC-007',
@@ -126,6 +153,7 @@ export const INCIDENTS_DATA: Incident[] = [
     iocs: [],
     playbook: [],
     mitreTactics: [],
+    solution: { recommendations: [] },
   },
 ];
 

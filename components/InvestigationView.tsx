@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Incident, IncidentStatus } from '../types';
 import InvestigationHeader from './InvestigationHeader';
@@ -21,6 +20,11 @@ interface InvestigationViewProps {
 const InvestigationView: React.FC<InvestigationViewProps> = ({ incident, onReturnToDashboard, updateIncident }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('logs');
 
+  const handleReportSuccess = () => {
+    updateIncident(incident.id, { status: IncidentStatus.Resolved });
+    onReturnToDashboard();
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'logs':
@@ -38,10 +42,10 @@ const InvestigationView: React.FC<InvestigationViewProps> = ({ incident, onRetur
       case 'email':
         return incident.emailBody ? <EmailViewer emailBody={incident.emailBody} /> : <div className="p-4 bg-slate-800 rounded-lg">Нет данных о письме для этого инцидента.</div>;
       case 'report':
-        return <ReportForm onSubmit={() => {
-            updateIncident(incident.id, { status: IncidentStatus.Resolved });
-            onReturnToDashboard();
-        }} />;
+        return <ReportForm 
+                    incident={incident}
+                    onSubmitSuccess={handleReportSuccess}
+                />;
       default:
         return null;
     }
